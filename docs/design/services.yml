@@ -1,0 +1,65 @@
+---
+backgroundColor: '#ffffff'
+components:
+  - kind: ser
+    label: Policia
+    id: policia
+    outline: REST
+  - kind: ser
+    label: Bomberos
+    id: bomberos
+    outline: REST
+  - kind: ser
+    label: Municipalidad de Cordoba
+    id: muni
+    outline: SOAP
+  - kind: ser
+    label: Ambulancia (107)
+    id: ambulancia
+    outline: SOAP
+  - kind: ser
+    label: Defensa Civil
+    id: defensa
+    outline: SOAP
+  - kind: ser
+    label: Batch processing
+    id: batch
+  - kind: ser
+    label: Rescue App API
+    id: svc
+  - kind: rdb
+    label: Base de Datos Municipalidad
+    id: dbmuni
+  - kind: rdb
+    label: Base de Datos Gobierno
+    id: dbgob
+  - kind: web
+    label: Rescue App Webapp
+    id: webapp
+connections:
+  - origin: webapp
+    targets:
+      - id: svc
+        dir: none
+  - origin: svc
+    targets:
+      - id: dbgob
+        dir: none
+      - id: policia
+        dir: none
+      - id: bomberos
+        dir: none
+      - id: ambulancia
+        dir: none
+      - id: defensa
+        dir: none
+  - origin: batch
+    targets:
+      - id: dbgob
+        dir: none
+      - id: dbmuni
+        dir: none
+  # - origin: muni
+  #   targets:
+  #     - id: dbmuni
+  #       dir: none
